@@ -1,0 +1,15 @@
+.stickynotes {
+    height: 300px;
+    max-width: 300px;
+    color: #444;
+
+    &.add {
+        color: var(--foreground);
+        box-shadow: var(--addneumorph);
+        background: var(--neumorphbg);
+        transition: all 0.7ms ease-in-out;
+        &:hover .plus {
+            transform: scale(1.5);
+        }
+    }
+}
