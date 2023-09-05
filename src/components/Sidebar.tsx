@@ -34,19 +34,19 @@ const Sidebar = () => {
                 <div className="sidebar-container__content mb-4">
                     <span className='title text-xs font-bold'>TASKS</span>
                     <ul className='content-list mt-2'>
-                        <li onClick={() => handleActive("sticky")} className={`content-list__item py-2 px-4 flex justify-between items-center hover:cursor-pointer rounded-md ${active == "sticky" && "active"}`}>
+                        <li onClick={() => handleActive("sticky")} className={`content-list__item py-2 px-4 flex justify-between items-center hover:cursor-pointer rounded-md ${active === "sticky" && "active"}`}>
                             <div className="item__name flex items-center"><FaRegStickyNote className="mr-2" />Sticky Wall</div>
                             <span className='text-xs'>12</span>
                         </li>
-                        <li onClick={() => handleActive("upcoming")} className={`content-list__item py-2 px-4 flex justify-between items-center hover:cursor-pointer rounded-md ${active == "upcoming" && "active"}`}>
+                        <li onClick={() => handleActive("upcoming")} className={`content-list__item py-2 px-4 flex justify-between items-center hover:cursor-pointer rounded-md ${active === "upcoming" && "active"}`}>
                             <div className="item__name flex items-center"><MdOutlineUpcoming className="mr-2" />Upcoming</div>
                             <span className='text-xs'>12</span>
                         </li>
-                        <li onClick={() => handleActive("today")} className={`content-list__item py-2 px-4 flex justify-between items-center hover:cursor-pointer rounded-md ${active == "today" && "active"}`}>
+                        <li onClick={() => handleActive("today")} className={`content-list__item py-2 px-4 flex justify-between items-center hover:cursor-pointer rounded-md ${active === "today" && "active"}`}>
                             <div className="item__name flex items-center"><CgCalendarToday className="mr-2" />Today</div>
                             <span className='text-xs'>12</span>
                         </li>
-                        <li onClick={() => handleActive("calendar")} className={`content-list__item py-2 px-4 flex justify-between items-center hover:cursor-pointer rounded-md ${active == "calendar" && "active"}`}>
+                        <li onClick={() => handleActive("calendar")} className={`content-list__item py-2 px-4 flex justify-between items-center hover:cursor-pointer rounded-md ${active === "calendar" && "active"}`}>
                             <div className="item__name flex items-center"><MdCalendarToday className="mr-2" />Calendar</div>
                             <p className='text-xs'>Coming Soon...</p>
                         </li>
@@ -57,7 +57,7 @@ const Sidebar = () => {
                 <div className="sidebar-container__content mb-4">
                     <span className='title text-xs font-bold'>LISTS</span>
                     <ul className='content-list mt-2'>
-                        <li onClick={() => handleActive("personal")} className={`content-list__item py-2 px-4 flex justify-between items-center hover:cursor-pointer rounded-md group ${active == "personal" && "active"}`}>
+                        <li onClick={() => handleActive("personal")} className={`content-list__item py-2 px-4 flex justify-between items-center hover:cursor-pointer rounded-md group ${active === "personal" && "active"}`}>
                             <div className="item__name flex items-center"><BiSolidSquareRounded className="mr-2" style={{ fill: "#ff6b6b" }} />Personal</div>
                             <div className="action__container flex transition-all duration-0 gap-2 invisible group-hover:visible">
                                 <MdOutlineEdit className="action__container-button text-lg hover:scale-110" />
@@ -65,14 +65,14 @@ const Sidebar = () => {
                             </div>
 
                         </li>
-                        <li onClick={() => handleActive("work")} className={`content-list__item py-2 px-4 flex justify-between items-center hover:cursor-pointer rounded-md group ${active == "work" && "active"}`}>
+                        <li onClick={() => handleActive("work")} className={`content-list__item py-2 px-4 flex justify-between items-center hover:cursor-pointer rounded-md group ${active === "work" && "active"}`}>
                             <div className="item__name flex items-center"><BiSolidSquareRounded className="mr-2" style={{ fill: "#66d9e8" }} />Work</div>
                             <div className="action__container flex transition-all duration-0 gap-2 invisible group-hover:visible">
                                 <MdOutlineEdit className="action__container-button text-lg hover:scale-110" />
                                 <BiTrashAlt className="action__container-button text-lg  hover:scale-110" />
                             </div>
                         </li>
-                        <li onClick={() => handleActive("chores")} className={`content-list__item py-2 px-4 flex justify-between items-center hover:cursor-pointer rounded-md group ${active == "chores" && "active"}`}>
+                        <li onClick={() => handleActive("chores")} className={`content-list__item py-2 px-4 flex justify-between items-center hover:cursor-pointer rounded-md group ${active === "chores" && "active"}`}>
                             <div className="item__name flex items-center"><BiSolidSquareRounded className="mr-2" style={{ fill: "#ffd43b" }} />Chores</div>
                             <div className="action__container flex transition-all duration-0 gap-2 invisible group-hover:visible">
                                 <MdOutlineEdit className="action__container-button text-lg hover:scale-110" />

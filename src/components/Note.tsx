@@ -1,5 +1,5 @@
 import { Note as NoteModel } from "../models/note";
-import styles from "../styles/Note.module.scss";
+import DateComponent from "./DateComponent";
 import "../styles/global.scss"
 
 interface NoteProps {
@@ -15,6 +15,16 @@ const Note = ({ note }: NoteProps) => {
         updatedAt,
     } = note;
 
+    let createdOrUpdated;
+    let date;
+    if (createdAt === updatedAt) {
+        createdOrUpdated = "";
+        date = createdAt
+    } else {
+        createdOrUpdated = "Last Updated: "
+        date = updatedAt;
+    }
+
     return (
         <li className="sticky-notes rounded-md shadow-md bg-[#ffdada] flex flex-col justify-between">
             <div>
@@ -23,9 +33,9 @@ const Note = ({ note }: NoteProps) => {
                     {text}
                 </p>
             </div>
-            <p className="px-6 py-3 font-normal text-xs">
-                Created At: {createdAt}
-            </p>
+            <span className="px-6 py-3 font-normal text-xs">
+                {createdOrUpdated}<DateComponent timestamp={date} />
+            </span>
         </li>
     )
 }
