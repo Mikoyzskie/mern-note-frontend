@@ -1,5 +1,6 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
+
 interface Props {
     children: ReactNode
 }
@@ -14,7 +15,7 @@ const ModalContext = createContext<Modal>({
     setIsOpen: () => { }
 })
 
-export const useModalContext = () => useContext(ModalContext)
+export const useModalContext = () => useContext(ModalContext);
 
 export const ModalProvider = ({ children }: Props) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
