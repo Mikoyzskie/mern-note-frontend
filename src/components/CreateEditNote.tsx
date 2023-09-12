@@ -6,17 +6,28 @@ import { Note } from '../models/note';
 import { NoteInput } from './network/note_api';
 import * as NoteApi from "./network/note_api";
 
-interface AddNoteDialogProps {
+interface AddEditNoteDialogProps {
     onNoteSaved: (note: Note) => void,
+    noteToEdit?: Note,
 }
 
-const CreateNote = ({ onNoteSaved }: AddNoteDialogProps) => {
+const CreateEditNote = ({ onNoteSaved, noteToEdit }: AddEditNoteDialogProps) => {
 
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<NoteInput>();
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<NoteInput>({
+        defaultValues: {
+            title: noteToEdit?.title || "",
+            text: noteToEdit?.text || "",
+        }
+    });
 
     async function onSubmit(input: NoteInput) {
         try {
-            const noteResponse = await NoteApi.createNote(input);
+            let noteResponse: Note;
+            if (noteToEdit) {
+                noteResponse = await NoteApi.updateNote(noteToEdit._id, input);
+            } else {
+                noteResponse = await NoteApi.createNote(input);
+            }
             onNoteSaved(noteResponse);
         } catch (error) {
             console.log(error);
@@ -24,13 +35,15 @@ const CreateNote = ({ onNoteSaved }: AddNoteDialogProps) => {
         }
     }
 
-    const { setIsOpen } = useModalContext();
+    const { setCreateModal, setNoteToEdit } = useModalContext();
 
     return (
         <form className='p-5' onSubmit={handleSubmit(onSubmit)}>
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
-                    <h2 className="text-base font-semibold leading-7 text-gray-900">Create a New Note</h2>
+                    <h2 className="text-base font-semibold leading-7 text-gray-900">{
+                        noteToEdit ? "Edit Note" : "Create a New Note"
+                    }</h2>
 
                     <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div className="sm:col-span-4">
@@ -82,11 +95,14 @@ const CreateNote = ({ onNoteSaved }: AddNoteDialogProps) => {
             </div>
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
-                <button type="button" className="text-sm font-semibold leading-6 text-gray-900" onClick={() => setIsOpen(false)}>Cancel</button>
+                <button type="button" className="text-sm font-semibold leading-6 text-gray-900" onClick={() => {
+                    setCreateModal(false);
+                    setNoteToEdit(null)
+                }}>Cancel</button>
                 <button type="submit" className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" disabled={isSubmitting}>Save</button>
             </div>
         </form>
     )
 }
 
-export default CreateNote
+export default CreateEditNote
