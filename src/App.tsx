@@ -2,8 +2,8 @@ import NoteContainer from './components/NotesContainer';
 import './App.scss';
 import Sidebar from "./components/Sidebar";
 import { ModalProvider } from './lib/Providers';
-import Login from './components/Login';
-import Register from "./components/Register";
+
+import SignUp from "./components/Signup";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
     //   </div>
     // </ModalProvider>
     // <Login />
-    <Register />
+    <SignUp onSignUpSuccessful={() => { }} />
   );
 }
 
