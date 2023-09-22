@@ -1,21 +1,25 @@
 import NoteContainer from './components/NotesContainer';
 import './App.scss';
 import Sidebar from "./components/Sidebar";
-import { ModalProvider } from './lib/Providers';
-
+import { ModalProvider, useModalContext } from './lib/Providers';
+import Login from "./components/Login";
 import SignUp from "./components/Signup";
 
 function App() {
-  return (
-    // <ModalProvider>
-    //   <div className='flex'>
-    //     <Sidebar />
 
-    //     <NoteContainer />
-    //   </div>
-    // </ModalProvider>
-    // <Login />
-    <SignUp onSignUpSuccessful={() => { }} />
+  return (
+    <ModalProvider>
+      {/* <div className='flex'>
+        <Sidebar />
+
+        <NoteContainer />
+      </div> */}
+
+      <Login onLoginSuccessful={() => {
+
+      }} />
+      <SignUp onSignUpSuccessful={() => { }} />
+    </ModalProvider>
   );
 }
 
